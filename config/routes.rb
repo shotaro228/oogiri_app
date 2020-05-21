@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   post "answer/:id/destroy" => "answers#destroy"
   
   get "user/index" => "users#index"
-  get "user/signup" => "users#new"
+  get "user/new" => "users#new"
   post "user/create" => "users#create"
   get "user/login" => "users#login_form"
   post "user/login" => "users#login"
@@ -22,7 +22,5 @@ Rails.application.routes.draw do
   get "user/:id/edit" => "users#edit"
   post "user/:id/update" => "users#update"
   post "user/:id/destroy" => "users#destroy"
-  
-  
   
 end
