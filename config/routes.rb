@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get "answer/index" => "answers#index"
   get "answer/new" => "answers#new"
   post "answer/create" => "answers#create"
+  get "answer/rank" => "answers#rank"
   get "answer/:id" => "answers#show"
   get "answer/:id/edit" => "answers#edit"
   post "answer/:id/update" => "answers#update"
@@ -22,5 +23,11 @@ Rails.application.routes.draw do
   get "user/:id/edit" => "users#edit"
   post "user/:id/update" => "users#update"
   post "user/:id/destroy" => "users#destroy"
+  
+  get "comment/new" => "commments#new"
+  post "comment/create" => "comments#create"
+  get "comment/:id/edit" => "comments#edit"
+  post "comment/:id/update" => "comments#update"
+  post "comment/:id/destroy" => "comments#destroy"
   
 end

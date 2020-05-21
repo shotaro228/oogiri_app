@@ -20,4 +20,7 @@ class AnswersController < ApplicationController
   
   def destroy
   end
+  
+  def rank
+  end
 end
