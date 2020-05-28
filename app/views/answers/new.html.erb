@@ -1,8 +1,11 @@
 <div class="question-area">
-  
+  <%= render "layouts/question" %>
 </div>
-<div class="container form-group">
-  <textarea class="form-control-lg"></textarea>
-  <button type="button" class="btn btn-danger">回答する</button>
-  <button type="button" class="btn btn-danger">キャンセル</button>
+<div class="container">
+  <div class="form-group">
+    <label>あなたの回答</label>
+    <textarea class="form-control"></textarea>
+    <button type="button" class="btn btn-primary">回答する</button>
+    <button type="button" class="btn btn-outline-secondary">キャンセル</button>
+  </div> 
 </div>
