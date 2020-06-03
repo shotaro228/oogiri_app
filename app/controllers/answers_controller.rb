@@ -1,6 +1,7 @@
 class AnswersController < ApplicationController
   
   def index
+    @count = 20
   end
   
   def new
