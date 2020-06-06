@@ -11,6 +11,7 @@ class AnswersController < ApplicationController
   end
   
   def show
+    @count = 20
   end
   
   def edit
@@ -23,5 +24,6 @@ class AnswersController < ApplicationController
   end
   
   def rank
+    @count = 20
   end
 end

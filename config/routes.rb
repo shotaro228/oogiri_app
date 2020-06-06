@@ -7,15 +7,15 @@ Rails.application.routes.draw do
   get "answers/rank" => "answers#rank"
   resources :answers
   
-  get "user/login" => "users#login_form"
-  post "user/login" => "users#login"
-  post "user/logout" => "users#logout"
+  get "users/login" => "users#login_form"
+  post "users/login" => "users#login"
+  post "users/logout" => "users#logout"
   resources :users
   
-  get "comment/new" => "commments#new"
-  post "comment/create" => "comments#create"
-  get "comment/:id/edit" => "comments#edit"
-  post "comment/:id/update" => "comments#update"
-  post "comment/:id/destroy" => "comments#destroy"
+  get "comments/new" => "comments#new"
+  post "comments/create" => "comments#create"
+  get "comments/:id/edit" => "comments#edit"
+  post "comments/:id/update" => "comments#update"
+  post "comments/:id/destroy" => "comments#destroy"
   
 end

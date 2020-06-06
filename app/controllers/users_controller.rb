@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
  
   def index
+    @count = 20
   end
   
   def show
+    @count = 20
   end
   
   def new
