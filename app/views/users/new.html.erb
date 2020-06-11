@@ -1,27 +1,23 @@
-<div class="h-100 w-100">
-  <form class="container">
-    <div class="form-group">
-      <label for="file">ユーザー画像</label>
-      <input class="d-block" id="file" type="file">
-    </div>
-    <div class="form-group">
-      <label for="user_name">ユーザー名</label>
-      <input class="form-control form-control-lg" id="user_name" type="text">
-    </div>
-    <div class="form-group">
-      <label for="email">Eメール</label>
-      <input class="form-control form-control-lg" id="email" type="email">
-    </div>
-    <div class="form-group">
-      <label for="password">パスワード</label>
-      <input class="form-control form-control-lg" id="password" type="password">
-    </div>
-    <div class="form-group">
-      <label for="introduction">自己紹介文</label>
-      <textarea class="form-control" id="introduction" rows="10" cols="40"></textarea>
-    </div>
-    <div class="row justify-content-end">
-      <button type="button" class="btn btn-primary">保存</button>
-      <button type="button" class="btn btn-outline-secondary">キャンセル</button>
-    </div>
-</form>
+<%= form_tag("/users", method: :post, class:"container") do %>
+  <div class="form-group">
+    <label for="user_name">ユーザー名</label>
+    <input class="form-control form-control-lg" id="user_name" type="text" name="name" value="<%= @user.name %>">
+  </div>
+  <div class="form-group">
+    <label for="email">Eメール</label>
+    <input class="form-control form-control-lg" id="email" type="email" name="email" value="<%= @user.email %>">
+  </div>
+  <div class="form-group">
+    <label for="password">パスワード</label>
+    <input class="form-control form-control-lg" id="password" type="password" name="password" <%= @user.password %>>
+  </div>
+  <div class="form-group">
+    <label for="introduction">自己紹介文</label>
+    <textarea class="form-control" id="introduction" rows="10" cols="40" name="content"><%= @user.introduction %></textarea>
+  </div>
+  <div class="row justify-content-end">
+    <input type="submit" class="btn btn-primary" value="完了">
+    <input type="reset" class="btn btn-outline-secondary" value="キャンセル">
+  </div>
+<% end %>
+

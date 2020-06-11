@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   get "answers/rank" => "answers#rank"
   resources :answers
   
-  get "users/login" => "users#login_form"
   post "users/login" => "users#login"
   post "users/logout" => "users#logout"
   resources :users
