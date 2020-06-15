@@ -11,8 +11,13 @@
 
   <body>
     <%= render("layouts/header") %>
+    <% if flash %>
+      <% flash.each do |key, value| %>
+        <%= content_tag(:div, value, class: ["alert", "alert-"+key, "text-center"]) %>
+      <% end %>
+    <% end %>
     <main>
-        <%= yield %>
+      <%= yield %>
     </main>
     <%= render "layouts/footer" %>
   </body>
