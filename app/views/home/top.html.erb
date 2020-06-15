@@ -1,11 +1,11 @@
 <%= form_tag("/users/login", method: :post, class:"container") do %>
   <div class="form-group">
-    <label for="email">Eメール</label>
-    <input class="form-control form-control-lg" id="email" type="email" name="email" value="<%= @email %>">
+    <%= label_tag(:email, "Eメール") %>
+    <%= text_field_tag(:email, [], class:"form-control form-control-lg") %>
   </div>
   <div class="form-group">
-    <label for="password">パスワード</label>
-    <input class="form-control form-control-lg" id="password" type="password" name="password" value="<%= @password %>">
+    <%= label_tag(:password, "パスワード") %>
+    <%= password_field_tag(:password, [], class:"form-control form-control-lg") %>
   </div>
     <div class="row justify-content-end">
       <input type="submit" class="btn btn-primary" value="ログイン">

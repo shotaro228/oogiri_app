@@ -1,8 +1,14 @@
 <header>
   <nav class="navbar navbar-expand-md navbar-dark bg-danger sticky-top">
+      <% if session[:user_id] %>
       <a class="navbar-brand" href="/answers">
         <i class="far fa-grin-squint-tears fa-3x text-white">ogiri</i>
       </a>
+      <% else %>
+      <a class="navbar-brand" href="/">
+        <i class="far fa-grin-squint-tears fa-3x text-white">ogiri</i>
+      </a>
+      <% end %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

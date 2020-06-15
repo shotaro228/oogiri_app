@@ -21,12 +21,11 @@ class UsersController < ApplicationController
       name: params[:name],
       email: params[:email],
       password: params[:password],
-      introduction: params[:content],
       image_name: "test_icon.png"
       )
       if @user.save
         session[:user_id] = @user.id
-        flash[:notice] = "ユーザー登録が完了しました"
+        flash[:warning] = "ユーザー登録が完了しました"
         redirect_to("/answers")
       else
         render("users/new")
@@ -38,13 +37,14 @@ class UsersController < ApplicationController
   end
   
   def update
+    binding.pry
     @user = User.find_by(id: params[:id])
     @user.name = params[:name]
     @user.email = params[:email]
     @user.password = params[:password]
-    @user.introduction = params[:content]
+    @user.introduction = params[:introduction]
     if @user.save
-      flash[:notice] = "ユーザー情報を編集しました"
+      flash[:warning] = "ユーザー情報を編集しました"
       redirect_to("/users/#{@user.id}")
     else
       render("users/edit")
@@ -55,9 +55,15 @@ class UsersController < ApplicationController
     @user = User.find_by(email: params[:email], password: params[:password])
     if @user
       session[:user_id] = @user.id
-      flash[:notice] = "ログインに成功しました"
+      flash[:warning] = "ログインに成功しました"
       redirect_to("/answers")
     else
+      user = User.find_by(email: params[:email])
+      if user 
+        flash.now[:danger] = "パスワードが違います"
+      else
+        flash.now[:danger] = "存在しないアドレスです"
+      end
       @email = params[:email]
       @password = params[:password]
       render("home/top")
@@ -66,7 +72,7 @@ class UsersController < ApplicationController
   
   def logout
     session[:user_id] = nil
-    flash[:notice] = "ログアウトしました"
+    flash[:warning] = "ログアウトしました"
     redirect_to("/")
   end
   

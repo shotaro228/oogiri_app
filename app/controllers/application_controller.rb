@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
   
   def forbid_login_user
-    if @currnt_user
+    if @current_user
       redirect_to("/answers")
     end
   end
