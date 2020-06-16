@@ -8,7 +8,6 @@ class UsersController < ApplicationController
   end
   
   def show
-    @count = 20
     @user = User.find_by(id: params[:id])
   end
   
@@ -37,7 +36,6 @@ class UsersController < ApplicationController
   end
   
   def update
-    binding.pry
     @user = User.find_by(id: params[:id])
     @user.name = params[:name]
     @user.email = params[:email]
