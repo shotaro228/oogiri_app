@@ -1,1 +1,13 @@
-answer編集
+<div class="question-area">
+  <%= render "layouts/question" %>
+</div>
+<%= form_tag("/answers/#{@answer.id}", method: :patch, class: "container pt-5") do %>
+  <div class="form-group">
+    <%= label_tag(:answer_content, "あなたの回答") %>
+    <%= text_area_tag(:content, "#{@answer.content}", class: "form-control") %>
+    <div class=" row pt-4 justify-content-end">
+      <input type="submit" class="btn btn-primary" value="編集する">
+      <input type="reset" class="btn btn-outline-secondary" value="キャンセル">
+    </div>
+  </div> 
+<% end %>

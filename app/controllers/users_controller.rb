@@ -4,11 +4,10 @@ class UsersController < ApplicationController
   before_action :ensure_correct_user, {only:[:edit, :update]}
   
   def index
-    @count = 20
+    @users = User.all
   end
   
   def show
-    @count = 20
     @user = User.find_by(id: params[:id])
   end
   
@@ -37,7 +36,6 @@ class UsersController < ApplicationController
   end
   
   def update
-    binding.pry
     @user = User.find_by(id: params[:id])
     @user.name = params[:name]
     @user.email = params[:email]
