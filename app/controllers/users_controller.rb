@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :ensure_correct_user, {only:[:edit, :update]}
   
   def index
-    @count = 20
+    @users = User.all
   end
   
   def show
