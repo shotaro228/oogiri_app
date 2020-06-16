@@ -1,7 +1,7 @@
 <div class="container">
   <div class="border p-3 mb-5">
     <div class="row">
-      <%= image_tag '/test_icon.png', class: "rounded-circle col-1" %>
+      <%= image_tag "/user_images/#{@user.image_name}", class: "col-1" %>
       <%= link_to(@user.name, "/users/#{@user.id}", class: "col-9 font-weight-bold") %>
       <p class="col-2"><%= @answer.created_at %></p>
     </div>

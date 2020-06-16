@@ -1,7 +1,7 @@
-<%= form_tag("/users/#{@user.id}", method: :patch, class: "container") do %>
+<%= form_tag("/users/#{@user.id}", method: :patch, multipart: true, class: "container") do %>
     <div class="form-group">
       <label for="file">ユーザー画像</label>
-      <input class="d-block" id="file" type="file">
+      <input class="d-block" id="file" type="file" name="image">
     </div>
     <div class="form-group">
     <%= label_tag(:user_name, "ユーザー名") %>
