@@ -1,18 +1,18 @@
-<%= form_tag("/users", method: :post, class:"container") do %>
+<%= form_with(model: @user, local: true, class:　"container") do |f| %>
   <div class="form-group">
-    <%= label_tag(:user_name, "ユーザー名") %>
-    <%= text_field_tag(:name, "#{@user.name}", class:"form-control form-control-lg") %>
+    <%= f.label_tag(:user_name, "ユーザー名") %>
+    <%= f.text_field_tag(:name, class: "form-control form-control-lg") %>
   </div>
   <div class="form-group">
-    <%= label_tag(:email, "Eメール") %>
-    <%= text_field_tag(:email, "#{@user.email}", class:"form-control form-control-lg") %>
+    <%= f.label_tag(:email, "Eメール") %>
+    <%= f.text_field_tag(:email, class: "form-control form-control-lg") %>
   </div>
   <div class="form-group">
-    <%= label_tag(:password, "パスワード") %>
-    <%= password_field_tag(:password, "#{@user.password}", class:"form-control form-control-lg") %>
+    <%= f.label_tag(:password, "パスワード") %>
+    <%= f.password_field_tag(:password, class: "form-control form-control-lg") %>
   </div>
   <div class="row justify-content-end">
-    <input type="submit" class="btn btn-primary" value="完了">
+    <%= f.submit "完了", class:"btn btn-primary" %>
     <input type="reset" class="btn btn-outline-secondary" value="キャンセル">
   </div>
 <% end %>
