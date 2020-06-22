@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   post "users/logout" => "users#logout"
   resources :users
   
-  get "comments/new" => "comments#new"
-  post "comments/create" => "comments#create"
+  get "comments/:id/new" => "comments#new"
+  post "comments/:id/create" => "comments#create"
   get "comments/:id/edit" => "comments#edit"
   post "comments/:id/update" => "comments#update"
   post "comments/:id/destroy" => "comments#destroy"

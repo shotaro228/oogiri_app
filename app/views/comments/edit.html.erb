@@ -1,0 +1,10 @@
+<%= form_tag("/comments/#{@comment.id}/update", method: :post, class: "container") do %>
+  <div class="form-group">
+    <label for="answer_content">あなたのコメント</label>
+    <textarea class="form-control" rows="10" col="40" name="content"><%= @comment.content %></textarea>
+    <div class="row justify-content-end pt-4">
+      <input type="submit" class="btn btn-primary" value="編集する">
+      <input type="reset" class="btn btn-outline-secondary" value="キャンセル">
+    </div>
+  </div> 
+<% end %>
