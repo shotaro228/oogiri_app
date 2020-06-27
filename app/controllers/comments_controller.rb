@@ -12,11 +12,6 @@ class CommentsController < ApplicationController
       user_id: @current_user.id,
       answer_id: params[:id]
     )
-    
-    if @comment.user_id ==  @answer.user_id
-      flash[:danger] = "自分にはコメントできません"
-      redirect_to("/answers/#{@comment.answer_id}")
-    else
       if @comment.save
         flash[:warning] = "コメントしました"
         redirect_to("/answers/#{@comment.answer_id}")
@@ -24,7 +19,6 @@ class CommentsController < ApplicationController
         flash[:danger] = "内容を0~140文字で入力してください"
         render("comments/new")
       end
-    end
   end
   
   

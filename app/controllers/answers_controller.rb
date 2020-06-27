@@ -29,7 +29,8 @@ class AnswersController < ApplicationController
   def show
     @answer = Answer.find_by(id: params[:id])
     @user = @answer.user
-    @likes_count=Like.where(answer_id: @answer.id).count
+    @comments_count = @answer.comments.count
+    @likes_count= @answer.likes.count
   end
   
   def edit

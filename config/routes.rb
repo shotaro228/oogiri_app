@@ -19,4 +19,7 @@ Rails.application.routes.draw do
   
   post "likes/:answer_id/create" => "likes#create"
   post "likes/:answer_id/destroy" => "likes#destroy"
+  
+  post "commentlikes/:comment_id/create" => "commentlikes#create"
+  post "commentlikes/:comment_id/destroy" => "commentlikes#destroy"
 end
