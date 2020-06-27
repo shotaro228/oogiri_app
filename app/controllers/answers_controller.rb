@@ -27,9 +27,10 @@ class AnswersController < ApplicationController
   end
   
   def show
-    @count = 20 
     @answer = Answer.find_by(id: params[:id])
     @user = @answer.user
+    @comments_count = @answer.comments.count
+    @likes_count= @answer.likes.count
   end
   
   def edit
