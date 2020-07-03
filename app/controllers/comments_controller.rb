@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   
+  
   def new
     @comment = Comment.new
     @answer = Answer.find_by(id: params[:id])
@@ -7,11 +8,7 @@ class CommentsController < ApplicationController
   
   def create
     @answer = Answer.find_by(id: params[:id])
-    @comment = Comment.new(
-      content: params[:content],
-      user_id: @current_user.id,
-      answer_id: params[:id]
-    )
+    @comment = Comment.new(comment_params)
       if @comment.save
         flash[:warning] = "コメントしました"
         redirect_to("/answers/#{@comment.answer_id}")
@@ -21,6 +18,9 @@ class CommentsController < ApplicationController
       end
   end
   
+  def show
+    @comment = Comment.find_by(id: params[:id])
+  end
   
   def edit
     @comment = Comment.find_by(id: params[:id])
@@ -28,8 +28,7 @@ class CommentsController < ApplicationController
   
   def update
     @comment = Comment.find_by(id: params[:id])
-    @comment.content = params[:content]
-    
+    @comment.content = params[:comment][:content]
     if @comment.save
       flash[:warning] = "コメントを編集しました"
       redirect_to("/answers/#{@comment.answer_id}")
@@ -42,4 +41,9 @@ class CommentsController < ApplicationController
   def destroy
   end
   
+  private
+  def comment_params
+    params.require(:comment).permit(:content).merge(user_id: @current_user.id, answer_id: params[:id])
+    
+  end
 end
