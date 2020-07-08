@@ -29,7 +29,7 @@
       <div class="col-2">
         <%= link_to("/comments/#{answer.id}/new") do %>
           <% if Comment.find_by(user_id: @current_user.id, answer_id: answer.id) %>
-            <i class="fas fa-comments fa-2x fa-fw" style="color:royalblue;"></i>
+            <i class="fas fa-comment fa-2x fa-fw" style="color:royalblue;"></i>
           <% else %>
             <i class="far fa-comment fa-2x fa-fw"></i>
           <% end %>
