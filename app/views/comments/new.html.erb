@@ -1,9 +1,9 @@
-<%= form_tag("/comments/#{@answer.id}/create", method: :post, class: "container") do %>
+<%= form_for @comment, :html => {class: "container"} do |f| %>
   <div class="form-group">
-    <label for="answer_content">あなたのコメント</label>
-    <textarea class="form-control" rows="10" col="40" name="content"></textarea>
+    <%= f.label :answer_content, "あなたのコメント" %>
+    <%= f.text_area :content, class: "form-control", size: "40x10" %>
     <div class="row justify-content-end pt-4">
-      <input type="submit" class="btn btn-primary" value="コメントする">
+      <%= f.submit "コメントする", class: "btn btn-primary" %>
       <input type="reset" class="btn btn-outline-secondary" value="キャンセル">
     </div>
   </div> 

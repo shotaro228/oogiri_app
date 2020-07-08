@@ -11,11 +11,11 @@ Rails.application.routes.draw do
   post "users/logout" => "users#logout"
   resources :users
   
-  get "comments/:id/new" => "comments#new"
-  post "comments/:id/create" => "comments#create"
-  get "comments/:id/edit" => "comments#edit"
-  post "comments/:id/update" => "comments#update"
+  get "comments/:id/new" => "comments#new", as: "new_comment"
+  post "comments/:id/create" => "comments#create", as: "comments"
+  get "comments/:id/edit" => "comments#edit", as: "edit_comment"
   post "comments/:id/destroy" => "comments#destroy"
+  patch "comments/:id" => "comments#update", as: "comment"
   
   post "likes/:answer_id/create" => "likes#create"
   post "likes/:answer_id/destroy" => "likes#destroy"

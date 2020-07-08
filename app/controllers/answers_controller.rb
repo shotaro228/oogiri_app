@@ -13,10 +13,7 @@ class AnswersController < ApplicationController
   end
   
   def create
-    @answer = Answer.new(
-      content: params[:content],
-      user_id: @current_user.id
-      )
+    @answer = Answer.new(answer_params)
     if @answer.save
       flash[:warning] ="回答しました"
       redirect_to("/")
@@ -38,13 +35,11 @@ class AnswersController < ApplicationController
   end
   
   def update
-    @answer = Answer.find_by(id: params[:id])
-    @answer.content = params[:content]
-    if @answer.save
+    if @answer.update(answer_params)
       flash[:warning] = "回答を編集しました"
       redirect_to("/answers")
     else
-      fladh[:danger] = "編集に失敗しました"
+      flash[:danger] = "編集に失敗しました"
       render("answers/edit")
     end
   end
@@ -59,10 +54,15 @@ class AnswersController < ApplicationController
   end
   
   def ensure_correct_user
-    @answer=Answer.find_by(id: params[:id])
+    @answer= Answer.find_by(id: params[:id])
     if @answer.user_id!=@current_user.id
       flash[:danger]="権限がありません"
       redirect_to("/answers")
     end
+  end
+  
+  private
+  def answer_params
+    params.require(:answer).permit(:content).merge(user_id: @current_user.id)
   end
 end
