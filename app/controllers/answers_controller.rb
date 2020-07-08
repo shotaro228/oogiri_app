@@ -39,7 +39,7 @@ class AnswersController < ApplicationController
       flash[:warning] = "回答を編集しました"
       redirect_to("/answers")
     else
-      fladh[:danger] = "編集に失敗しました"
+      flash[:danger] = "編集に失敗しました"
       render("answers/edit")
     end
   end
@@ -54,7 +54,7 @@ class AnswersController < ApplicationController
   end
   
   def ensure_correct_user
-    @answer=Answer.find_by(id: params[:id])
+    @answer= Answer.find_by(id: params[:id])
     if @answer.user_id!=@current_user.id
       flash[:danger]="権限がありません"
       redirect_to("/answers")

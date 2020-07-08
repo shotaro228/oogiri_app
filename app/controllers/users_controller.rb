@@ -32,15 +32,14 @@ class UsersController < ApplicationController
   end
   
   def update
-    @user = User.find_by(id: params[:id])
-    @user.name = params[:name]
-    @user.email = params[:email]
-    @user.password = params[:password]
-    @user.introduction = params[:introduction]
-    
-    if params[:image]
+    @user = User.find_by(id: user_params[:id])
+    @user.name = user_params[:name]
+    @user.email = user_params[:email]
+    @user.password = user_params[:password]
+    @user.introduction = user_params[:introduction]
+    if user_params[:image]
       @user.image_name = "#{@user.id}.png"
-      image = params[:image]
+      image = user_params[:image]
       File.binwrite("public/user_images/#{@user.image_name}",image.read)
     end
     
@@ -85,6 +84,6 @@ class UsersController < ApplicationController
   
   private
   def user_params
-    params.require(:user).permit(:name,:email,:password,:introduction,:image)
+    params.require(:user).permit(:name,:email,:password,:introduction,:image).merge(id: params[:id])
   end
 end
