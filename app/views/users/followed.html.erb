@@ -1,0 +1,14 @@
+<% @followers.each do |follower| %>
+<div class="container">
+  <div class="border p-3">
+    <div class="row">
+      <%= image_tag "/user_images/#{follower.image_name}", class: "image-fluid col-1" %>
+      <%= link_to(follower.name, "/users/#{follower.id}", class: "col-8 font-weight-bold") %>
+      <button type="button" class="btn btn-primary col-2">フォロー</button>
+    </div>
+    <div class="row">
+      <p class="col pt-4"><%= follower.introduction %></p>
+    </div>
+  </div>
+</div>
+<% end %>

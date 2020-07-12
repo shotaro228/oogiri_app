@@ -12,4 +12,19 @@ class User < ApplicationRecord
   validates :email, {presence: true, uniqueness: true}
   validates :password, {presence: true}
   
+  def follow(other_user)
+    unless self == other_user
+      self.follows.find_or_create_by(follow_id: other_user.id)
+    end
+  end
+
+  def unfollow(other_user)
+    follow = self.follows.find_by(follow_id: other_user.id)
+    follow.destroy if follow
+  end
+
+  def following?(other_user)
+    self.followings.include?(other_user)
+  end
+  
 end

@@ -82,6 +82,16 @@ class UsersController < ApplicationController
     end
   end
   
+  def followed
+    @user = User.find_by(id: params[:id])
+    @followers = @user.followers
+  end
+  
+  def follow_to
+    @user = User.find_by(id: params[:id])
+    @followings = @user.followings
+  end
+  
   private
   def user_params
     params.require(:user).permit(:name,:email,:password,:introduction,:image).merge(id: params[:id])
