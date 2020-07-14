@@ -1,0 +1,26 @@
+<% @comments.each do |comment| %>
+<div class="container">
+  <div class="border p-3">
+    <div class="row">
+      <%= image_tag "/user_images/#{comment.user.image_name}", class: "image-fluid col-1" %>
+      <%= link_to(comment.user.name, "/users/#{comment.user.id}", class: "col-8 font-weight-bold") %>
+      <% unless @current_user == comment.user %>
+        <% if @current_user.following?(comment.user) %>
+          <%= form_for(@current_user.follows.find_by(follow_id: comment.user.id), html: { method: :delete }) do |f| %>
+            <%= hidden_field_tag :follow_id, comment.user.id %>
+            <%= f.submit 'フォロー解除', class: 'btn btn-primary btn-block' %>
+          <% end %>
+        <% else %>
+          <%= form_for(@current_user.follows.build) do |f| %>
+            <%= hidden_field_tag :follow_id, comment.user.id %>
+            <%= f.submit 'フォローする', class: 'btn btn-primary btn-block' %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="row">
+      <p class="col pt-4"><%= comment.user.introduction %></p>
+    </div>
+  </div>
+</div>
+<% end %>

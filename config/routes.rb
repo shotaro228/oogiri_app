@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   
   root to: "home#top"
   
-  get "answers/rank" => "answers#rank"
+  get "answers/:id/liked" => "answers#liked"
+  get "answers/:id/commented" => "answers#commented"
   resources :answers
   
   post "users/login" => "users#login"
@@ -18,6 +19,7 @@ Rails.application.routes.draw do
   get "comments/:id/edit" => "comments#edit", as: "edit_comment"
   post "comments/:id/destroy" => "comments#destroy"
   patch "comments/:id" => "comments#update", as: "comment"
+  get "comments/:id/liked" => "comments#liked"
   
   post "likes/:answer_id/create" => "likes#create"
   post "likes/:answer_id/destroy" => "likes#destroy"

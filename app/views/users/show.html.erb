@@ -29,7 +29,7 @@
   </div>
 </div>
 
-<% @user.answers.each do |answer| %>
+<% @answers.each do |answer| %>
 <div class="container">
   <div class="border p-3">
     <div class="row">
@@ -51,6 +51,7 @@
             <i class="far fa-heart fa-2x fa-fw" style="color:red;"></i>
           <% end %>
         <% end %>
+        <%= link_to(answer.likes.count, "/answers/#{answer.id}/liked") %>
       </div>
       <div class="col-2">
         <%= link_to("/comments/#{answer.id}/new") do %>
@@ -60,6 +61,7 @@
             <i class="far fa-comment fa-2x fa-fw"></i>
           <% end %>
         <% end %>
+        <%= link_to(answer.comments.count, "/answers/#{answer.id}/commented") %>
       </div>
     </div>
   </div>

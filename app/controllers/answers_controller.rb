@@ -26,6 +26,7 @@ class AnswersController < ApplicationController
   def show
     @answer = Answer.find_by(id: params[:id])
     @user = @answer.user
+    @comments = @answer.comments
     @comments_count = @answer.comments.count
     @likes_count= @answer.likes.count
   end
@@ -49,16 +50,22 @@ class AnswersController < ApplicationController
     @answer.destroy
   end
   
-  def rank
-    @count = 20
-  end
-  
   def ensure_correct_user
     @answer= Answer.find_by(id: params[:id])
     if @answer.user_id!=@current_user.id
       flash[:danger]="権限がありません"
       redirect_to("/answers")
     end
+  end
+  
+  def liked
+    @answer = Answer.find_by(id: params[:id])
+    @likes = @answer.likes
+  end
+  
+  def commented
+    @answer = Answer.find_by(id: params[:id])
+    @comments = @answer.comments
   end
   
   private

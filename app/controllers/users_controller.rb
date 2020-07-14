@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find_by(id: params[:id])
+    @answers = @user.answers
   end
   
   def new
