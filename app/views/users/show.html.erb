@@ -5,19 +5,31 @@
     </div>
     <div class="row">
       <p class="font-weight-bold lead col-8 pl-5 pt-4"><%= @user.name %></p>
-      <button type="button" class="btn btn-primary col-2">フォロー</button>
+      <% unless @current_user == @user %>
+        <% if @current_user.following?(@user) %>
+          <%= form_for(@current_user.follows.find_by(follow_id: @user.id), html: { method: :delete }) do |f| %>
+            <%= hidden_field_tag :follow_id, @user.id %>
+            <%= f.submit 'フォロー解除', class: 'btn btn-primary byn-blocks' %>
+          <% end %>
+        <% else %>
+          <%= form_for(@current_user.follows.build) do |f| %>
+            <%= hidden_field_tag :follow_id, @user.id %>
+            <%= f.submit 'フォローする', class: 'btn btn-primary btn-block' %>
+          <% end %>
+        <% end %>
+      <% end %>
     </div>
     <div class="row">
       <p class="col pt-4"><%= @user.introduction %></p>
     </div>
     <div class="row">
-      <a href="/users" class="col-2">100フォロー中</a>
-      <a href="/users" class="col-2">100フォロワー</a>
+      <%= link_to("#{@user.followings.count}"+"フォロー", "/users/#{@user.id}/follow_to", class: "col-2") %>
+      <%= link_to("#{@user.followers.count}"+"フォロワー", "/users/#{@user.id}/followed", class: "col-2") %>
     </div>
   </div>
 </div>
 
-<% @user.answers.each do |answer| %>
+<% @answers.each do |answer| %>
 <div class="container">
   <div class="border p-3">
     <div class="row">
@@ -39,6 +51,7 @@
             <i class="far fa-heart fa-2x fa-fw" style="color:red;"></i>
           <% end %>
         <% end %>
+        <%= link_to(answer.likes.count, "/answers/#{answer.id}/liked") %>
       </div>
       <div class="col-2">
         <%= link_to("/comments/#{answer.id}/new") do %>
@@ -48,6 +61,7 @@
             <i class="far fa-comment fa-2x fa-fw"></i>
           <% end %>
         <% end %>
+        <%= link_to(answer.comments.count, "/answers/#{answer.id}/commented") %>
       </div>
     </div>
   </div>

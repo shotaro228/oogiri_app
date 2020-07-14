@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find_by(id: params[:id])
+    @answers = @user.answers
   end
   
   def new
@@ -80,6 +81,16 @@ class UsersController < ApplicationController
     if @current_user.id != params[:id].to_i
       redirect_to("answers")
     end
+  end
+  
+  def followed
+    @user = User.find_by(id: params[:id])
+    @followers = @user.followers
+  end
+  
+  def follow_to
+    @user = User.find_by(id: params[:id])
+    @followings = @user.followings
   end
   
   private

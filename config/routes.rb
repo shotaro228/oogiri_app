@@ -4,11 +4,14 @@ Rails.application.routes.draw do
   
   root to: "home#top"
   
-  get "answers/rank" => "answers#rank"
+  get "answers/:id/liked" => "answers#liked"
+  get "answers/:id/commented" => "answers#commented"
   resources :answers
   
   post "users/login" => "users#login"
   post "users/logout" => "users#logout"
+  get "users/:id/followed" => "users#followed"
+  get "users/:id/follow_to" => "users#follow_to"
   resources :users
   
   get "comments/:id/new" => "comments#new", as: "new_comment"
@@ -16,10 +19,13 @@ Rails.application.routes.draw do
   get "comments/:id/edit" => "comments#edit", as: "edit_comment"
   post "comments/:id/destroy" => "comments#destroy"
   patch "comments/:id" => "comments#update", as: "comment"
+  get "comments/:id/liked" => "comments#liked"
   
   post "likes/:answer_id/create" => "likes#create"
   post "likes/:answer_id/destroy" => "likes#destroy"
   
   post "commentlikes/:comment_id/create" => "commentlikes#create"
   post "commentlikes/:comment_id/destroy" => "commentlikes#destroy"
+  
+  resources :follows, only: [:create, :destroy]
 end

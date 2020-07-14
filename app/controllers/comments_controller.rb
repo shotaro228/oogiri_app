@@ -50,6 +50,10 @@ class CommentsController < ApplicationController
     end
   end
   
+  def liked
+   @comment = Comment.find_by(id: params[:id])
+   @commentlikes = @comment.commentlikes
+  end
   
   private
   def comment_params
