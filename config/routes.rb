@@ -10,9 +10,17 @@ Rails.application.routes.draw do
   
   post "users/login" => "users#login"
   post "users/logout" => "users#logout"
-  get "users/:id/followed" => "users#followed"
+  get "users/:id/followed" => "users#followed"    
   get "users/:id/follow_to" => "users#follow_to"
   resources :users
+  
+  namespace :admin do
+    post "users/login" => "users#login"
+    post "users/logout" => "users#logout"
+    get "users/:id/followed" => "users#followed"
+    get "users/:id/follow_to" => "users#follow_to"
+  resources :users
+  end
   
   get "comments/:id/new" => "comments#new", as: "new_comment"
   post "comments/:id/create" => "comments#create", as: "comments"
