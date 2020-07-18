@@ -16,7 +16,7 @@ class AnswersController < ApplicationController
     @answer = Answer.new(answer_params)
     if @answer.save
       flash[:warning] ="回答しました"
-      redirect_to("/")
+      redirect_to("/answers")
     else
       flash[:danger] = "内容を1文字以上140字以内で入力してください"
       render("answers/new")

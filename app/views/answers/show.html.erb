@@ -3,7 +3,7 @@
     <div class="row">
       <%= image_tag "/user_images/#{@user.image_name}", class: "image-fluid col-1" %>
       <%= link_to(@user.name, "/users/#{@user.id}", class: "col-9 font-weight-bold") %>
-      <p class="col-2"><%= @answer.created_at %></p>
+      <p class="col-2"><%= @answer.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %></p>
     </div>
     <div class="row">
       <div class="col pt-4 lead">
@@ -43,7 +43,7 @@
     <div class="row">
       <%= image_tag "/user_images/#{comment.user.image_name}", class: "image_fluid col-1" %>
       <%= link_to("#{comment.user.name}", "/users/#{comment.user.id}", class: "col-9 font-weight-bold") %>
-      <p class="col-2"><%= comment.created_at %></p>
+      <p class="col-2"><%= comment.created_at.strftime("%Y/%m/%d %H:%M:%S") %></p>
     </div>
     <div class="col pt-4">
       <%= link_to(comment.content, "/comments/#{comment.id}/edit") %>

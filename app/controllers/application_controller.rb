@@ -22,6 +22,6 @@ class ApplicationController < ActionController::Base
   end
   
   def admin_user
-    redirect_to("/answers/index") unless @current_user.admin?
+    redirect_to("/answers") unless @current_user.admin?
   end
 end

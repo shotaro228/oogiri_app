@@ -1,0 +1,10 @@
+<%= form_for @question, :html => {class: "container"} do |f| %>
+  <div class="form-group">
+    <%= f.label :question_content, "お題の内容" %>
+    <%= f.text_area :content, class: "form-control", size: "40x10" %>
+    <div class=" row pt-4 justify-content-end">
+      <%= f.submit  "作成する", class: "btn btn-primary" %>
+      <input type="reset" class="btn btn-outline-secondary" value="キャンセル">
+    </div>
+  </div> 
+<% end %>

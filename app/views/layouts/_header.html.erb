@@ -27,6 +27,11 @@
           <li>
             <%= link_to("ログアウト", "/users/logout", method: :post, class:"nav-link") %>
           </li>
+          <% if @current_user.admin? %>
+            <li class="nav-item">
+              <%= link_to("お題作成", "/questions/new", class:"nav-link") %>
+            </li>
+          <% end %>
         <% else %>  
           <li class="nav-item">
             <%= link_to("新規登録", "/users/new", class:"nav-link") %>

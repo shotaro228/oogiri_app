@@ -36,4 +36,5 @@ Rails.application.routes.draw do
   post "commentlikes/:comment_id/destroy" => "commentlikes#destroy"
   
   resources :follows, only: [:create, :destroy]
+  resources :questions, only: [:new, :create, :destroy]
 end
