@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :set_current_user
+  before_action :set_current_user, :find_today_question
   
   
   def set_current_user
@@ -24,4 +24,9 @@ class ApplicationController < ActionController::Base
   def admin_user
     redirect_to("/answers") unless @current_user.admin?
   end
+  
+  def find_today_question
+    @today_question = Question.find_by(today_flg: true)
+  end
+  
 end

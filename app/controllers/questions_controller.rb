@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  before_action :admin_user
   
   def new
     @question = Question.new
@@ -15,6 +16,13 @@ class QuestionsController < ApplicationController
   end 
   
   def destroy
+  end
+  
+  def set_today_question
+     Question.update_all(today_flg: false)
+     @question = Question.all.sample
+     @question.today_flg = true
+     @question.save
   end
   
   def question_params

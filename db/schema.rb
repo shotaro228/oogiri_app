@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200717204236) do
+ActiveRecord::Schema.define(version: 20200720121305) do
 
   create_table "answers", force: :cascade do |t|
     t.text     "content"
@@ -54,8 +54,9 @@ ActiveRecord::Schema.define(version: 20200717204236) do
 
   create_table "questions", force: :cascade do |t|
     t.text     "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "today_flg",  default: false, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -67,6 +68,7 @@ ActiveRecord::Schema.define(version: 20200717204236) do
     t.text     "introduction"
     t.string   "image_name"
     t.boolean  "admin",        default: false
+    t.string   "avatar"
   end
 
 end

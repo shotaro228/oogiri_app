@@ -43,7 +43,6 @@ class UsersController < ApplicationController
       image = user_params[:image]
       File.binwrite("public/user_images/#{@user.image_name}",image.read)
     end
-    
     if @user.save
       flash[:warning] = "ユーザー情報を編集しました"
       redirect_to("/users/#{@user.id}")
@@ -95,6 +94,6 @@ class UsersController < ApplicationController
   
   private
   def user_params
-    params.require(:user).permit(:name,:email,:password,:introduction,:image).merge(id: params[:id])
+    params.require(:user).permit(:name,:email,:password,:introduction,:avatar).merge(id: params[:id])
   end
 end
